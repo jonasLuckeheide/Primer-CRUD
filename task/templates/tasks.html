@@ -1,28 +1,38 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<main class="container py-5">
+    <h1 class="text-center display-4 mb-4">Tareas Pendientes</h1>
 
-
-
-<main class=" container">
     <div class="row">
-        <div class="col-md-6 offset-md-3">
-            <h1 class="text-center display-3 pd-5">Tareas pendientes</h1>
-            <ul class = "list-group">
+        <!-- Lista de tareas -->
+        <div class="col-md-8 offset-md-2">
+            <ul class="list-group">
                 {% for task in tasks %}
-                <a class="list-group-item" href="{% url 'task_detail' task.id %}">
-                    <header class="d-flex justify-content-between">
-                        {% if task.impotante %}
-                            <h1 class="fw-bold text-success" >{{task.titulo}}</h1>
-                        {% else %}
-                            <h1 class="fw-bold">{{task.titulo}}</h1>
-                        {% endif %}
-                            <p>{{task.user.username}}</p>
-                    </header>
-                    <p>{{task.descripcion}}</p>
+                <li class="list-group-item shadow-sm mb-3 border-0 rounded-lg">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <!-- Título de la tarea -->
+                        <div class="d-flex flex-column">
+                            {% if task.impotante %}
+                            <h2 class="fw-bold text-success">{{ task.titulo }}</h2>
+                            {% else %}
+                            <h2 class="fw-bold">{{ task.titulo }}</h2>
+                            {% endif %}
+                            <p class="text-muted mb-2">{{ task.descripcion }}</p>
+                        </div>
 
-                    <p>{{task.fecha_de_finalizacion|date:'M J Y:i'}}</p>
-            </a>
+                        <!-- Información adicional -->
+                        <div class="text-end">
+                            <p class="mb-1"><strong>{{ task.user.username }}</strong></p>
+                            <p class="text-muted">{{ task.fecha_de_finalizacion|date:'M j, Y H:i' }}</p>
+                        </div>
+                    </div>
+
+                    <!-- Enlace para ver detalles -->
+                    <a href="{% url 'task_detail' task.id %}" class="btn btn-outline-primary btn-sm mt-3 w-100">
+                        Ver detalles
+                    </a>
+                </li>
                 {% endfor %}
             </ul>
         </div>

@@ -33,10 +33,14 @@ def signup(request):
                     'form': UserCreationForm,
                     "error": 'Las contraseñas no coinciden'
                 })  
-    
+
+@login_required
 def home( request):
     return render(request, 'home.html')
 
+@login_required
+def project(request):
+    project = 
 
 @login_required
 def tasks(request):
@@ -50,25 +54,31 @@ def tasks_completed(request):
     return render (request, 'tasks.html', {'tasks': tasks})
 
 
+
 @login_required
-def create_task (request):
+def create_task(request):
     if request.method == 'GET':
         return render(request, 'create_task.html', {
-        'form': TaskForm
-    })
+            'form': TaskForm()
+        })
     else:
         try:
             form = TaskForm(request.POST)
-            new_task = form.save(commit=False)
-            new_task.user = request.user
-            new_task.save()
-            return redirect('tasks')
-        except:
-            return render(request, 'create_task.html',{
-                'form': TaskForm,
-                "error": 'Ingrese valores correctos'
+            if form.is_valid():
+                new_task = form.save(commit=False)
+                new_task.user = request.user
+                new_task.save()
+                return redirect('tasks')  # Redirige a la lista de tareas
+            else:
+                return render(request, 'create_task.html', {
+                    'form': form,
+                    'error': 'Ingrese valores correctos'
+                })
+        except Exception as e:
+            return render(request, 'create_task.html', {
+                'form': TaskForm(),
+                'error': f'Ocurrió un error: {e}'
             })
-
 
 @login_required
 def task_detail(request, task_id):

@@ -1,28 +1,32 @@
 {% extends 'base.html' %}
 
-
 {% block content %}
 <main class="container py-5">
-    <section class="card card-body">
-        
-        <h1 class="display-1 text-center">Crud con Django</h1>
+    <section class="card card-body shadow-lg rounded-lg">
+        <h1 class="display-4 text-center text-primary mb-4">Bienvenido al CRUD con Django</h1>
 
-        <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, nulla rerum? Possimus ab tempore illo, odio quis unde, veritatis aspernatur nam quidem architecto voluptates adipisci. Voluptatum itaque aliquam aperiam quasi illum praesentium consequatur cupiditate velit sunt doloribus culpa, fuga, quaerat atque facilis ex reiciendis, inventore corrupti eligendi fugit iste maxime. Quidem, doloribus quibusdam autem esse libero corrupti quaerat, voluptatem labore quis sed, culpa dolore illo. Accusantium ut distinctio maiores minus explicabo esse aperiam voluptatum cum consequatur vel, nostrum et inventore eius optio asperiores non quisquam fuga id provident amet! Eaque praesentium temporibus vel sequi ratione quisquam minus repellendus asperiores aliquid?
+        <p class="lead text-center mb-4">
+            En esta aplicación podrás crear tareas, gestionarlas y asignarlas a proyectos. 
+            ¡Empieza a organizarte hoy mismo!
         </p>
-        <div class = "text-center">
-            <a class = "btn btn-dark" href = "/signin/">
-                Signin
-            </a>
-            <a class = "btn btn-dark" href = "/signup/">
-                Signup
+
+        <div class="text-center mb-4">
+            <!-- Botón de Signin -->
+            <a class="btn btn-primary btn-lg" href="/signin/">
+                <i class="fas fa-sign-in-alt"></i> Iniciar sesión
             </a>
         </div>
+        
+        <div class="text-center mb-4">
+            <!-- Botón de Signup -->
+            <a class="btn btn-success btn-lg" href="/signup/">
+                <i class="fas fa-user-plus"></i> Registrarse
+            </a>
+        </div>
+
+        <footer class="text-center mt-5">
+            <p class="text-muted">&copy; 2024 Crud con Django. Todos los derechos reservados.</p>
+        </footer>
     </section>
 </main>
-
-
-
-
-
 {% endblock %}
